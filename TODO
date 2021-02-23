@@ -1,0 +1,14 @@
+- [ ] We need to deal with this in Tmutil.py `fail('please set privacy preference that allows tmutil full disk access')`
+
+`
+  # tmutil setdestination -a 'smb://user:password@tm2.example.com/folder'
+  tmutil: setdestination requires Full Disk Access privileges.
+  To allow this operation, select Full Disk Access in the Privacy
+  tab of the Security & Privacy preference pane, and add Terminal
+  to the list of applications which are allowed Full Disk Access.
+`
+`
+Identifier type:  bundle ID
+identifier:       com.apple.timemachine.tmutil
+Code requirement: identifier "com.apple.timemachine.tmutil" and anchor apple
+`
