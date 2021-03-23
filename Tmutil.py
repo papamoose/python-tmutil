@@ -193,8 +193,12 @@ class Tmutil:
 
       if 'Destinations' in destinations.keys():
         for dest in destinations['Destinations']:
-          if submitted_url == dest['URL']:
-            match = True
+          try:
+            if submitted_url == dest['URL']:
+              match = True
+          except KeyError as e:
+            # Local backup destinations do not have an "URL"
+            pass
 
       # if not already a destination
       if not match:
@@ -251,8 +255,13 @@ class Tmutil:
     destinations = self.destinationinfo()
     if 'Destinations' in destinations.keys():
       for dest in destinations['Destinations']:
-        if re.findall(match, dest['URL']):
-          ids.append(dest['ID'])
+        #print(dest)
+        try:
+          if re.findall(match, dest['URL']):
+            ids.append(dest['ID'])
+        except KeyError as e:
+          # Local backup destinations do not have an "URL"
+          pass
 
     return ids
 
@@ -271,7 +280,6 @@ class Tmutil:
       return destinations
     else:
       return False
-
 
 
   """ addexclusion: Not tested
@@ -494,3 +502,4 @@ class Tmutil:
       return self._remove_empty_string_from_list(l)
     else:
       return False
+
